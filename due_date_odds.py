@@ -13,7 +13,14 @@ MAX_DAYS_PAST_DUE = 14
 
 
 class DueDateDataPoint:
+    """This class represents one row in the due_dates.csv file, and interprets the strings as dates.
+    Provided with two probability dicts, it will calculate the probability of going into labor on a given date.
+    """
     def __init__(self, due_date_string, scheduled_date_string):
+        """This assumes two strings are passed in. The first must be the due date in mm/yy format, and
+        the second is either an empty string (no scheduled date) or a scheduled c-section/induction date
+        in mm/yy format. If no scheduled date is provided, the due date + MAX_DAYS_PAST_DUE days will be used.
+        """
         due_date = datetime.datetime.strptime(due_date_string, "%m/%d")
         due_date_with_year = due_date.replace(year=2023 if due_date.month != 1 else 2024).date()
         self.due_date = due_date_with_year
@@ -25,9 +32,27 @@ class DueDateDataPoint:
             self.scheduled_date = sched_date_with_year
         else:
             # If no scheduled date provided, assume due date + 14 days
-            self.scheduled_date = self.due_date + datetime.timedelta(days=14)
+            self.scheduled_date = self.due_date + datetime.timedelta(days=MAX_DAYS_PAST_DUE)
 
-    def prob_of_labor(self, date, prob_of_date: dict[int:float], prob_of_getting_to_date: dict[int:float]):
+
+    def prob_of_labor(self, date, prob_of_date: dict[int:float], prob_of_getting_to_date: dict[int:float]) -> float:
+        """Returns the probability of going into labor on a given date, given the two probability dicts.
+
+        The first probability dict is the probability of going into spontaneous labor on any specific day,
+        relative to the due date (e.g. odds of labor 3 days before the due date (-3) is 2.7%).
+
+        The second probability dict is the probability of getting to the date while still pregnant (i.e. without
+        having gone into labor on any previous date). In this case, the odds of getting to 3 days before your due
+        date and still being pregnant is 61.4%. This corresponds to 1 - (sum of prob_of_date for all previous dates),
+        so could be derived from the previous probability dict, but I'm passing it in for simplicity/performance sake.
+
+        This function begins by just calculating the probability of spontaneous labor on the given date. Then it compares
+        the given date to the scheduled date. If the given date is exactly the scheduled date, than we assume that the odds
+        of delivery that day are equal to the odds of getting to that date (this basically excludes the possibility that a
+        scheduled induction or c-section is delayed, and in the case of inductions is the probability of labor beginning that
+        day, not a baby actually arriving). For any date after the scheduled date, the probability is 0, because we assume
+        the baby is already born.
+        """
         # Fully naive odds of going into labor on this date.
         prob = prob_of_date.get((date - self.due_date).days, 0)
 
@@ -42,7 +67,12 @@ class DueDateDataPoint:
         return prob
 
 
-def load_probability_csv_as_dict(filename):
+def load_probability_csv_as_dict(filename: str) -> tuple[dict[int:float], dict[int:float]]:
+    """This loads a csv file with the following format:
+    nicely formatted date (ignored), days relative to due date (pos or neg integer), prob_of_date, prob_of_getting_to_date.
+    See the doc string of DueDateDataPoint.prob_of_labor for more info on the two probability lists.
+    It returns two dictionaries which map the number of days relative to the due date to the corresponding probability.
+    """
     prob_of_date = {}
     prob_of_getting_to_date = {}
     with open(filename, 'r') as file:
@@ -56,6 +86,12 @@ def load_probability_csv_as_dict(filename):
 
 
 def load_due_dates_as_list(filename: str) -> list[DueDateDataPoint]:
+    """This loads a csv file with the following format:
+    name (ignored), due_date (mm/dd), scheduled_date (mm/dd or empty), baby_born (TRUE or FALSE or empty (False)).
+    At this point, baby_born excludes the data point becuase the odds of labor at anytime in the future is 0.
+
+    It returns a list of DueDateDataPoints corresponding to each still-pregnant person.
+    """
     data_list = []
     with open(filename, 'r') as file:
         reader = csv.reader(file)
@@ -67,6 +103,7 @@ def load_due_dates_as_list(filename: str) -> list[DueDateDataPoint]:
     return data_list
 
 def generate_dates(start_date, end_date) -> list[datetime.date]:
+    """Generates a list of dates between start_date and end_date, inclusive."""
     dates = []
     current_date = start_date
     while current_date <= end_date:
@@ -78,6 +115,14 @@ def calculate_net_probability(prob_of_date: dict[int:float],
                               prob_of_getting_to_date: dict[int:float],
                               due_date_list: list[DueDateDataPoint],
                               date: datetime.date) -> float:
+    """Calculates the net probability of a given date. This is the probability that ANYONE is in labor (or delivers,
+    in the case of a c-section) on the given date.
+
+    The P(anyone is in labor) can be rephrased as not P(no one in labor), which is how it is calculated. First the odds
+    for each individual to be in labor on that day are calculated, and inversed to be the probability that each individual
+    is NOT in labor. The product of that array is the probability that no one is in labor, and that's inverted to be the
+    probability that someone is in labor.
+    """
 
     per_person_prob_of_labor = [
         due_date.prob_of_labor(date, prob_of_date, prob_of_getting_to_date) for due_date in due_date_list
