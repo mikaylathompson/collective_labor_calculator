@@ -14,7 +14,8 @@ def generate_histogram(due_date_list, filename):
     plt.show()
 
 if __name__ == "__main__":
-    due_dates = load_due_dates_as_list("due_dates.csv")
+    data_points = load_due_dates_as_list("due_dates.csv")
+    due_dates = [data_point.due_date for data_point in data_points]
     generate_histogram(due_dates, "due_date_histogram.png")
-    due_dates_with_scheduled = load_due_dates_as_list("due_dates.csv", override_with_scheduled_date=True)
+    due_dates_with_scheduled = [data_point.scheduled_date if data_point.scheduled_date_provided else data_point.due_date for data_point in data_points]
     generate_histogram(due_dates_with_scheduled, "scheduled_or_due_date_histogram.png")

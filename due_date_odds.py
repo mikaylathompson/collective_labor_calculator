@@ -3,11 +3,21 @@ import datetime
 import math
 from pprint import pprint
 
+# Start and end dates for the generated data
+START_DATE = datetime.date.today()
+END_DATE = datetime.date(2024, 1, 15)
+
+# Maximum number of days past due date to consider a possibility of labor.
+# Basically this assumes that everyone is induced at due_date + MAX_DAYS_PAST_DUE.
+MAX_DAYS_PAST_DUE = 14
+
+
 class DueDateDataPoint:
     def __init__(self, due_date_string, scheduled_date_string):
         due_date = datetime.datetime.strptime(due_date_string, "%m/%d")
         due_date_with_year = due_date.replace(year=2023 if due_date.month != 1 else 2024).date()
         self.due_date = due_date_with_year
+        self.scheduled_date_provided = bool(scheduled_date_string)
 
         if scheduled_date_string:
             scheduled_date = datetime.datetime.strptime(scheduled_date_string, "%m/%d")
@@ -76,24 +86,25 @@ def calculate_net_probability(prob_of_date: dict[int:float],
     prob_of_no_one_in_labor = math.prod(per_person_prob_of_not_labor)
     return 1 - prob_of_no_one_in_labor
 
+
 def main(probabilities_file, dates_file, output_csv_file):
     prob_of_date, prob_of_getting_to_date = load_probability_csv_as_dict(probabilities_file)
     
     due_date_list = load_due_dates_as_list(dates_file)
 
-    today = datetime.date.today()
-    final_date = datetime.date(2024, 1, 15)
-    dates = generate_dates(today, final_date)
+    dates = generate_dates(START_DATE, END_DATE)
     
     with open(output_csv_file, 'w', newline='') as file:
         writer = csv.writer(file)
-        writer.writerow("Date,Net Probability")
+        writer.writerow(["Date","Net Probability"])
         for date in dates:
             net_prob = calculate_net_probability(prob_of_date, prob_of_getting_to_date, due_date_list, date)
             writer.writerow([date, net_prob])
 
-# Example usage
-probabilties_csv_file = 'probabilities.csv'
-dates_csv_file = 'due_dates.csv'
-output_csv_file = 'net_probabilities.csv'
-main(probabilties_csv_file, dates_csv_file, output_csv_file)
+
+if __name__ == "__main__":
+    # Ideally these would be user provided inputs, but for now they're hard coded.
+    probabilties_csv_file = 'probabilities.csv'
+    dates_csv_file = 'due_dates.csv'
+    output_csv_file = 'net_probabilities.csv'
+    main(probabilties_csv_file, dates_csv_file, output_csv_file)
