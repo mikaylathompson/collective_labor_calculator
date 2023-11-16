@@ -1,74 +1,74 @@
-Weeks,Days Relative to Due Date,On This Day
-"33 weeks, 2 days",-47 days,0.1%
-"33 weeks, 3 days",-46 days,0.1%
-"33 weeks, 4 days",-45 days,0.1%
-"33 weeks, 5 days",-44 days,0.1%
-"33 weeks, 6 days",-43 days,0.1%
-34w,-42 days,0.1%
-"34 weeks, 1 day",-41 days,0.1%
-"34 weeks, 2 days",-40 days,0.1%
-"34 weeks, 3 days",-39 days,0.1%
-"34 weeks, 4 days",-38 days,0.2%
-"34 weeks, 5 days",-37 days,0.2%
-"34 weeks, 6 days",-36 days,0.2%
-35w,-35 days,0.2%
-"35 weeks, 1 day",-34 days,0.3%
-"35 weeks, 2 days",-33 days,0.3%
-"35 weeks, 3 days",-32 days,0.3%
-"35 weeks, 4 days",-31 days,0.4%
-"35 weeks, 5 days",-30 days,0.4%
-"35 weeks, 6 days",-29 days,0.4%
-36w,-28 days,0.5%
-"36 weeks, 1 day",-27 days,0.5%
-"36 weeks, 2 days",-26 days,0.6%
-"36 weeks, 3 days",-25 days,0.6%
-"36 weeks, 4 days",-24 days,0.7%
-"36 weeks, 5 days",-23 days,0.8%
-"36 weeks, 6 days",-22 days,0.8%
-37w,-21 days,0.9%
-"37 weeks, 1 day",-20 days,1%
-"37 weeks, 2 days",-19 days,1.1%
-"37 weeks, 3 days",-18 days,1.1%
-"37 weeks, 4 days",-17 days,1.2%
-"37 weeks, 5 days",-16 days,1.3%
-"37 weeks, 6 days",-15 days,1.4%
-38w,-14 days,1.5%
-"38 weeks, 1 day",-13 days,1.6%
-"38 weeks, 2 days",-12 days,1.7%
-"38 weeks, 3 days",-11 days,1.8%
-"38 weeks, 4 days",-10 days,1.9%
-"38 weeks, 5 days",-9 days,2%
-"38 weeks, 6 days",-8 days,2.1%
-39w,-7 days,2.2%
-"39 weeks, 1 day",-6 days,2.4%
-"39 weeks, 2 days",-5 days,2.5%
-"39 weeks, 3 days",-4 days,2.6%
-"39 weeks, 4 days",-3 days,2.7%
-"39 weeks, 5 days",-2 days,2.8%
-"39 weeks, 6 days",-1 day,2.9%
-40w,0 days,3%
-"40 weeks, 1 day",1 day,3.1%
-"40 weeks, 2 days",2 days,3.2%
-"40 weeks, 3 days",3 days,3.2%
-"40 weeks, 4 days",4 days,3.3%
-"40 weeks, 5 days",5 days,3.3%
-"40 weeks, 6 days",6 days,3.3%
-41w,7 days,3.3%
-"41 weeks, 1 day",8 days,3.2%
-"41 weeks, 2 days",9 days,3.1%
-"41 weeks, 3 days",10 days,3%
-"41 weeks, 4 days",11 days,2.8%
-"41 weeks, 5 days",12 days,2.6%
-"41 weeks, 6 days",13 days,2.3%
-42w,14 days,2%
-"42 weeks, 1 day",15 days,1.8%
-"42 weeks, 2 days",16 days,1.5%
-"42 weeks, 3 days",17 days,1.2%
-"42 weeks, 4 days",18 days,0.9%
-"42 weeks, 5 days",19 days,0.7%
-"42 weeks, 6 days",20 days,0.5%
-43w,21 days,0.4%
-"43 weeks, 1 day",22 days,0.3%
-"43 weeks, 2 days",23 days,0.2%
-"43 weeks, 3 days",24 days,0.1%
-"43 weeks, 4 days",25 days,0.1%
+Weeks,Days Relative to Due Date,On This Day,Of reaching this day
+"33 weeks, 2 days",-47 days,0.1%,99.9%
+"33 weeks, 3 days",-46 days,0.1%,99.9%
+"33 weeks, 4 days",-45 days,0.1%,99.8%
+"33 weeks, 5 days",-44 days,0.1%,99.7%
+"33 weeks, 6 days",-43 days,0.1%,99.6%
+34w,-42 days,0.1%,99.5%
+"34 weeks, 1 day",-41 days,0.1%,99.4%
+"34 weeks, 2 days",-40 days,0.1%,99.3%
+"34 weeks, 3 days",-39 days,0.1%,99.2%
+"34 weeks, 4 days",-38 days,0.2%,99.1%
+"34 weeks, 5 days",-37 days,0.2%,98.9%
+"34 weeks, 6 days",-36 days,0.2%,98.7%
+35w,-35 days,0.2%,98.5%
+"35 weeks, 1 day",-34 days,0.3%,98.3%
+"35 weeks, 2 days",-33 days,0.3%,98%
+"35 weeks, 3 days",-32 days,0.3%,97.7%
+"35 weeks, 4 days",-31 days,0.4%,97.4%
+"35 weeks, 5 days",-30 days,0.4%,97%
+"35 weeks, 6 days",-29 days,0.4%,96.6%
+36w,-28 days,0.5%,96.2%
+"36 weeks, 1 day",-27 days,0.5%,95.7%
+"36 weeks, 2 days",-26 days,0.6%,95.2%
+"36 weeks, 3 days",-25 days,0.6%,94.6%
+"36 weeks, 4 days",-24 days,0.7%,94%
+"36 weeks, 5 days",-23 days,0.8%,93.3%
+"36 weeks, 6 days",-22 days,0.8%,92.5%
+37w,-21 days,0.9%,91.7%
+"37 weeks, 1 day",-20 days,1%,90.8%
+"37 weeks, 2 days",-19 days,1.1%,89.8%
+"37 weeks, 3 days",-18 days,1.1%,88.7%
+"37 weeks, 4 days",-17 days,1.2%,87.6%
+"37 weeks, 5 days",-16 days,1.3%,86.4%
+"37 weeks, 6 days",-15 days,1.4%,85.1%
+38w,-14 days,1.5%,83.7%
+"38 weeks, 1 day",-13 days,1.6%,82.2%
+"38 weeks, 2 days",-12 days,1.7%,80.6%
+"38 weeks, 3 days",-11 days,1.8%,78.9%
+"38 weeks, 4 days",-10 days,1.9%,77.1%
+"38 weeks, 5 days",-9 days,2%,75.2%
+"38 weeks, 6 days",-8 days,2.1%,73.2%
+39w,-7 days,2.2%,71.1%
+"39 weeks, 1 day",-6 days,2.4%,68.9%
+"39 weeks, 2 days",-5 days,2.5%,66.5%
+"39 weeks, 3 days",-4 days,2.6%,64%
+"39 weeks, 4 days",-3 days,2.7%,61.4%
+"39 weeks, 5 days",-2 days,2.8%,58.7%
+"39 weeks, 6 days",-1 day,2.9%,55.9%
+40w,0 days,3%,53%
+"40 weeks, 1 day",1 day,3.1%,50%
+"40 weeks, 2 days",2 days,3.2%,46.9%
+"40 weeks, 3 days",3 days,3.2%,43.7%
+"40 weeks, 4 days",4 days,3.3%,40.5%
+"40 weeks, 5 days",5 days,3.3%,37.2%
+"40 weeks, 6 days",6 days,3.3%,33.9%
+41w,7 days,3.3%,30.6%
+"41 weeks, 1 day",8 days,3.2%,27.3%
+"41 weeks, 2 days",9 days,3.1%,24.1%
+"41 weeks, 3 days",10 days,3%,21%
+"41 weeks, 4 days",11 days,2.8%,18%
+"41 weeks, 5 days",12 days,2.6%,15.2%
+"41 weeks, 6 days",13 days,2.3%,12.6%
+42w,14 days,2%,10.3%
+"42 weeks, 1 day",15 days,1.8%,0
+"42 weeks, 2 days",16 days,1.5%,0
+"42 weeks, 3 days",17 days,1.2%,0
+"42 weeks, 4 days",18 days,0.9%,0
+"42 weeks, 5 days",19 days,0.7%,0
+"42 weeks, 6 days",20 days,0.5%,0
+43w,21 days,0.4%,0
+"43 weeks, 1 day",22 days,0.3%,0
+"43 weeks, 2 days",23 days,0.2%,0
+"43 weeks, 3 days",24 days,0.1%,0
+"43 weeks, 4 days",25 days,0.1%,0
