@@ -14,16 +14,21 @@ def load_csv_as_dict(filename):
             data_dict[key] = value
     return data_dict
 
-def load_due_dates_as_list(filename):
+def load_due_dates_as_list(filename, override_with_scheduled_date=False):
     data_list = []
     with open(filename, 'r') as file:
         reader = csv.reader(file)
         next(reader) # Skip header
         for row in reader:
             day = datetime.datetime.strptime(row[1], "%m/%d")
+            if override_with_scheduled_date:
+                scheduled_date = row[2]
+                if scheduled_date:
+                    day = datetime.datetime.strptime(scheduled_date, "%m/%d")
             baby_born = row[3] == "TRUE"
             if not baby_born:
-                data_list.append(day.replace(year=datetime.datetime.now().year).date())
+                date_with_year = day.replace(year=2023 if day.month != 1 else 2024).date()
+                data_list.append(date_with_year)
     return data_list
 
 def generate_dates(start_date, end_date) -> list[datetime.date]:
